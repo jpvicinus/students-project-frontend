@@ -1,7 +1,6 @@
-//import logo from './logo.svg';
 import './App.css';
 import React from 'react';
-//import axios from 'axios';
+import {Switch, Route, Link} from 'react-router-dom';
 
 class App extends React.Component {
 
@@ -69,14 +68,25 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          
-          Schedule Assistant
-
-          {this.getStudentsTable()}
-
-        </header>
-      
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={() =>
+              <header className="App-header">
+                Schedule Assistant
+                <Link to="/students">Students List</Link>
+              </header>
+            }
+          />
+          <Route
+            path="/students"
+            exact 
+            render={() =>
+              this.getStudentsTable()
+            }
+          />
+        </Switch>
       </div>
     );
   }
