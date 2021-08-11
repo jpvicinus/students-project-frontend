@@ -1,4 +1,6 @@
 import './App.css';
+import ClassListTable from './classlist.js';
+import RosterTable from './roster.js';
 import React from 'react';
 import {Switch, Route, Link} from 'react-router-dom';
 
@@ -33,8 +35,9 @@ class App extends React.Component {
   componentDidMount() {
     this.getData();
   }
-
-  getStudentsTable() {
+  
+  getStudentsTable(grade) {
+    console.log("the grade is" + grade)
     let studentComponents = [];
     let firstRow = (
       <tr>
@@ -46,8 +49,13 @@ class App extends React.Component {
     );
     studentComponents.push(firstRow);
     console.log('these are the students: ' + this.state.students);
+    
+    let students = this.state.students 
+    if (grade && parseInt(grade)) {
+      students = this.state.students.filter(s => s[3] === parseInt(grade))
+    }
 
-    for (const student of this.state.students) {
+    for (const student of students) {
       console.log('adding new row of students')
       let newRow = (
         <tr>
@@ -65,6 +73,7 @@ class App extends React.Component {
     </table>
   }
 
+
   render() {
     return (
       <div className="App">
@@ -76,21 +85,59 @@ class App extends React.Component {
               <header className="App-header">
                 Schedule Assistant
                 <Link to="/students">Students List</Link>
+                <Link to="/class">Class List</Link>
+                <form>
+                Enter the name of the class
+                <input id="nameofclass" type="text" name="nameofclass" onKeyPress={(event,value) => {
+                  console.log("We entered value " + event.key)
+                  const classname =  document.getElementById("nameofclass").value;
+                  console.log("the value is:"+ classname)
+                  if (event.key === "Enter"){
+                    event.preventDefault()
+                    event.stopPropagation()
+                    window.location.replace(`/roster/${classname}`)
+                  }
+                }}/>
+                </form>
+                <button type="button" onClick={() =>{
+                  window.location.replace(`/students/9`)
+                }}>Grade 9</button>
+                
               </header>
             }
+          />
+          <Route
+            path="/students/9"
+            exact 
+            render={() =>
+              this.getStudentsTable(9)
+            } 
           />
           <Route
             path="/students"
             exact 
             render={() =>
               this.getStudentsTable()
-            }
+            } 
           />
+          <Route
+            path="/class"
+            exact 
+            render={() =>
+              <ClassListTable/> 
+            }
+            />
+          <Route
+            path="/roster/:id" 
+            render={() =>
+              <RosterTable/> 
+            }
+            />
+
         </Switch>
       </div>
     );
-  }
-  
+  } 
 }
 
 export default App;
