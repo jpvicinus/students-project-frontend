@@ -84,8 +84,22 @@ class App extends React.Component {
             render={() =>
               <header className="App-header">
                 Schedule Assistant
+                <br></br>
+                <br></br>
                 <Link to="/students">Students List</Link>
+                <br></br>
+                <div class="buttons">
+                <button type="button" onClick={() =>{window.location.replace(`/students/9`)}}>Grade 9 </button> 
+                &nbsp;
+                <button type="button" onClick={() =>{window.location.replace(`/students/10`)}}>Grade 10</button>
+                &nbsp;
+                <button type="button" onClick={() =>{window.location.replace(`/students/11`)}}>Grade 11</button>
+                &nbsp;
+                <button type="button" onClick={() =>{window.location.replace(`/students/12`)}}>Grade 12</button>
+                </div>
+                <br></br>
                 <Link to="/class">Class List</Link>
+                <br></br>
                 <form>
                 Enter the name of the class
                 <input id="nameofclass" type="text" name="nameofclass" onKeyPress={(event,value) => {
@@ -99,9 +113,9 @@ class App extends React.Component {
                   }
                 }}/>
                 </form>
-                <button type="button" onClick={() =>{
+                {/* <button type="button" onClick={() =>{
                   window.location.replace(`/students/9`)
-                }}>Grade 9</button>
+                }}>Grade 9</button> */}
                 
               </header>
             }
@@ -114,11 +128,33 @@ class App extends React.Component {
             } 
           />
           <Route
+            path="/students/10"
+            exact 
+            render={() =>
+              this.getStudentsTable(10)
+            } 
+          />
+          <Route
+            path="/students/11"
+            exact 
+            render={() =>
+              this.getStudentsTable(11)
+            } 
+          />
+          <Route
+            path="/students/12"
+            exact 
+            render={() =>
+              this.getStudentsTable(12)
+            } 
+          />
+          <Route
             path="/students"
             exact 
             render={() =>
               this.getStudentsTable()
             } 
+            
           />
           <Route
             path="/class"
@@ -141,3 +177,17 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+
+
+<div class="buttons">
+
+<button type="button" onClick={() =>{window.location.replace(`/students/9`)}}>Grade 9</button>
+<button type="button" onClick={() =>{window.location.replace(`/students/10`)}}>Grade 10</button>
+<button type="button" onClick={() =>{window.location.replace(`/students/11`)}}>Grade 11</button>
+<button type="button" onClick={() =>{window.location.replace(`/students/12`)}}>Grade 12</button>
+
+</div>
+
+
