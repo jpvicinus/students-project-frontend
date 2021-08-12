@@ -58,9 +58,12 @@ class RosterTable extends React.Component {
         RosterComponents.push(newRow)
       }
   
-      return <table>
+      return <div>
+          <button type="button" onClick={() =>{window.location.replace(`/`)}}> Go Home </button>
+          <table>
         {RosterComponents}
       </table>
+      </div>
 
     }
 

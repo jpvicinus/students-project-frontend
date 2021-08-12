@@ -32,6 +32,7 @@ class ClassListTable extends React.Component {
     componentDidMount() {
       this.getData();
     }
+    
     getClassTable() {
       let classComponents = [];
       let firstRow = (
@@ -62,9 +63,12 @@ class ClassListTable extends React.Component {
         classComponents.push(newRow)
       }
   
-      return <table>
+      return <div>
+          <button type="button" onClick={() =>{window.location.replace(`/`)}}> Go Home </button>
+          <table>
         {classComponents}
       </table>
+      </div>
     }
 
     render() {

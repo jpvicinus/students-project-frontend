@@ -1,6 +1,7 @@
 import './App.css';
 import ClassListTable from './classlist.js';
 import RosterTable from './roster.js';
+import NewClass from './newclass.js'
 import React from 'react';
 import {Switch, Route, Link} from 'react-router-dom';
 
@@ -68,9 +69,12 @@ class App extends React.Component {
       studentComponents.push(newRow)
     }
 
-    return <table>
+    return <div>
+    <button type="button" onClick={() =>{window.location.replace(`/`)}}> Go Home </button>
+    <table>
       {studentComponents}
     </table>
+    </div>
   }
 
 
@@ -90,15 +94,17 @@ class App extends React.Component {
                 <br></br>
                 <div class="buttons">
                 <button type="button" onClick={() =>{window.location.replace(`/students/9`)}}>Grade 9 </button> 
-                &nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;
                 <button type="button" onClick={() =>{window.location.replace(`/students/10`)}}>Grade 10</button>
-                &nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;
                 <button type="button" onClick={() =>{window.location.replace(`/students/11`)}}>Grade 11</button>
-                &nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;
                 <button type="button" onClick={() =>{window.location.replace(`/students/12`)}}>Grade 12</button>
                 </div>
                 <br></br>
                 <Link to="/class">Class List</Link>
+                <br></br>
+                <Link to="/newclass">Create a new class</Link>
                 <br></br>
                 <form>
                 Enter the name of the class
@@ -113,10 +119,6 @@ class App extends React.Component {
                   }
                 }}/>
                 </form>
-                {/* <button type="button" onClick={() =>{
-                  window.location.replace(`/students/9`)
-                }}>Grade 9</button> */}
-                
               </header>
             }
           />
@@ -167,6 +169,12 @@ class App extends React.Component {
             path="/roster/:id" 
             render={() =>
               <RosterTable/> 
+            }
+            />
+            <Route
+            path="/newclass" 
+            render={() =>
+              <NewClass/> 
             }
             />
 
