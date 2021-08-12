@@ -4,6 +4,8 @@ import RosterTable from './roster.js';
 import NewClass from './newclass.js'
 import React from 'react';
 import {Switch, Route, Link} from 'react-router-dom';
+import NewStudent from './newstudent';
+
 
 class App extends React.Component {
 
@@ -86,8 +88,12 @@ class App extends React.Component {
             path="/"
             exact
             render={() =>
+              <div>
               <header className="App-header">
-                Schedule Assistant
+              <img src="https://c.tenor.com/XM71zhV8kI8AAAAM/element-project-spinning.gif" alt="School Logo" width="100" height="100"></img>
+                Schedule Assistant 
+                <br></br>
+                For Mountain School
                 <br></br>
                 <br></br>
                 <Link to="/students">Students List</Link>
@@ -106,6 +112,8 @@ class App extends React.Component {
                 <br></br>
                 <Link to="/newclass">Create a new class</Link>
                 <br></br>
+                <Link to="/newstudent">Create a new student</Link>
+                <br></br>
                 <form>
                 Enter the name of the class
                 <input id="nameofclass" type="text" name="nameofclass" onKeyPress={(event,value) => {
@@ -120,6 +128,7 @@ class App extends React.Component {
                 }}/>
                 </form>
               </header>
+              </div>
             }
           />
           <Route
@@ -177,6 +186,19 @@ class App extends React.Component {
               <NewClass/> 
             }
             />
+             <Route
+            path="/deleteclass" 
+            render={() =>
+              <NewClass/> 
+            }
+            />
+             <Route
+            path="/newstudent" 
+            render={() =>
+              <NewStudent/> 
+            }
+            />
+             
 
         </Switch>
       </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import SubjectList from './subjectlist.js';
 
 class NewClass extends React.Component {
 
@@ -68,6 +69,7 @@ class NewClass extends React.Component {
                 </form>
                 <br></br>
             <button type="submit" onClick={this.submitData}>Submit </button>
+            <SubjectList></SubjectList>
           </div>
       )
     }
@@ -75,4 +77,3 @@ class NewClass extends React.Component {
 export default NewClass;
 
 
-// const classname =  document.getElementById("classname").value;

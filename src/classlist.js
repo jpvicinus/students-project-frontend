@@ -42,6 +42,7 @@ class ClassListTable extends React.Component {
           <th>Subject</th>
           <th>Size per Class</th>
           <th>Class ID</th>
+          <th></th>
   
         </tr>
       );
@@ -57,6 +58,29 @@ class ClassListTable extends React.Component {
             <th>{classes[2]}</th>
             <th>{classes[3]}</th>
             <th>{classes[4]}</th>
+            <th><button type="button" onClick={() =>{
+                const class_id = classes[4]
+                //fetch to delete class
+                const requestSettings = {
+                    method: 'DELETE',
+                    redirect: "follow",
+                    credentials: "same-origin",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  };
+                  console.log('sending get request to get classes...')
+                  fetch(`http://localhost:8000/class/${class_id}`, requestSettings)
+                  .then(response => response.json())
+                  .then(() => {
+                    window.location.reload();
+                  })
+                  .catch((error) => {
+                    console.error('Error:', error);
+                  });               
+            }}> Delete Class </button>
+</th>
+
   
           </tr>
         );
@@ -65,6 +89,7 @@ class ClassListTable extends React.Component {
   
       return <div>
           <button type="button" onClick={() =>{window.location.replace(`/`)}}> Go Home </button>
+
           <table>
         {classComponents}
       </table>
