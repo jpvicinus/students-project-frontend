@@ -48,6 +48,7 @@ class App extends React.Component {
         <th>Last Name</th>
         <th>Student ID</th>
         <th>Grade</th>
+        <th></th>
       </tr>
     );
     studentComponents.push(firstRow);
@@ -66,6 +67,27 @@ class App extends React.Component {
           <th>{student[1]}</th>
           <th>{student[2]}</th>
           <th>{student[3]}</th>
+          <th><button type="button" onClick={() =>{
+                const student_id = student[2]
+                //fetch to delete student
+                const requestSettings = {
+                    method: 'DELETE',
+                    redirect: "follow",
+                    credentials: "same-origin",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  };
+                  console.log('sending get request to get classes...')
+                  fetch(`http://localhost:8000/students/${student_id}`, requestSettings)
+                  .then(response => response.json())
+                  .then(() => {
+                    window.location.reload();
+                  })
+                  .catch((error) => {
+                    console.error('Error:', error);
+                  });               
+            }}> Delete Student </button></th>
         </tr>
       );
       studentComponents.push(newRow)
