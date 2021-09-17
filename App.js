@@ -6,6 +6,8 @@ import React from 'react';
 import {Switch, Route, Link} from 'react-router-dom';
 import NewStudent from './newstudent.js';
 import SchedTable from './schedule.js';
+import NewStudentHistory from './newhistory';
+import HistoryTable from './history';
 
 
 class App extends React.Component {
@@ -91,6 +93,7 @@ class App extends React.Component {
                     console.error('Error:', error);
                   });               
             }}> Delete Student </button></th>
+
         </tr>
       );
       studentComponents.push(newRow)
@@ -139,19 +142,9 @@ class App extends React.Component {
                 <br></br>
                 <Link to="/newstudent">Create a new student</Link>
                 <br></br>
-                {/* <form>
-                Enter the name of the class
-                <input id="nameofclass" type="text" name="nameofclass" onKeyPress={(event,value) => {
-                  console.log("We entered value " + event.key)
-                  const classname =  document.getElementById("nameofclass").value;
-                  console.log("the value is:"+ classname)
-                  if (event.key === "Enter"){
-                    event.preventDefault()
-                    event.stopPropagation()
-                    window.location.replace(`/roster/${classname}`)
-                  }
-                }}/>
-                </form> */}
+                <Link to="/newhistory">Add a class to student history</Link>
+
+                
               </header>
               </div>
             }
@@ -228,6 +221,18 @@ class App extends React.Component {
             path="/newstudent" 
             render={() =>
               <NewStudent/> 
+            }
+            />
+             <Route
+            path="/newhistory" 
+            render={() =>
+              <NewStudentHistory/> 
+            }
+            />
+            <Route
+            path="/history/:id" 
+            render={() =>
+              <HistoryTable/> 
             }
             />
              
